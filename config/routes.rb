@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :contacts
+  resources :users, only: :destroy
 end
