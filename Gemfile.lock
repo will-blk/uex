@@ -277,6 +277,8 @@ GEM
     rubocop-rspec (3.0.0)
       rubocop (~> 1.40)
     ruby-progressbar (1.13.0)
+    shoulda-matchers (6.2.0)
+      activesupport (>= 5.2.0)
     sidekiq (7.3.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -335,6 +337,7 @@ DEPENDENCIES
   rspec-sidekiq
   rubocop-rails
   rubocop-rspec
+  shoulda-matchers (~> 6.0)
   sidekiq
   simplecov
   tzinfo-data

@@ -12,7 +12,8 @@ class Contact < ApplicationRecord
             :bairro,
             :uf,
             :zipcode, presence: true
-  validates_with CpfValidator
+  validates :cpf, uniqueness: true, presence: true, format: /\d{11}/i
+  validates_with CpfValidator, if: ->(record) { record.cpf_changed? }
 
   store :address, accessors: %i[logradouro numero localidade bairro uf]
 end

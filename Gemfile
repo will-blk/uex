@@ -60,6 +60,7 @@ end
 
 group :test do
   gem 'rspec-sidekiq'
+  gem 'shoulda-matchers', '~> 6.0'
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'

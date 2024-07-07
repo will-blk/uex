@@ -4,6 +4,9 @@ class CpfValidator < ActiveModel::Validator
   def validate(record)
     @record = record
     @cpf = record.cpf
+
+    return if cpf.blank?
+
     @numbers = cpf.chars.map(&:to_i)
 
     validate_cpf_length
