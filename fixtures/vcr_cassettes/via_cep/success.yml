@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://viacep.com.br/ws/24210470/json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.22.0
+      Date:
+      - Sun, 07 Jul 2024 19:58:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Expires:
+      - Sun, 07 Jul 2024 20:58:11 GMT
+      Cache-Control:
+      - max-age=3600
+      - public
+      Pragma:
+      - public
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Headers:
+      - Content-Type, X-Request-With, X-Requested-By
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '86400'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJjZXAiOiAiMjQyMTAtNDcwIiwKICAibG9ncmFkb3VybyI6ICJSdWEgUHJlc2lkZW50ZSBQZWRyZWlyYSIsCiAgImNvbXBsZW1lbnRvIjogIiIsCiAgInVuaWRhZGUiOiAiIiwKICAiYmFpcnJvIjogIkluZ8OhIiwKICAibG9jYWxpZGFkZSI6ICJOaXRlcsOzaSIsCiAgInVmIjogIlJKIiwKICAiaWJnZSI6ICIzMzAzMzAyIiwKICAiZ2lhIjogIiIsCiAgImRkZCI6ICIyMSIsCiAgInNpYWZpIjogIjU4NjUiCn0=
+  recorded_at: Sun, 07 Jul 2024 19:58:11 GMT
+recorded_with: VCR 6.2.0

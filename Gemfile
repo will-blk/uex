@@ -51,7 +51,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  gem 'vcr'
 end
 
 group :development do
@@ -61,4 +60,6 @@ end
 
 group :test do
   gem 'simplecov', require: false
+  gem 'vcr'
+  gem 'webmock'
 end

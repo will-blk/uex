@@ -8,10 +8,19 @@ RSpec.describe 'Services', type: :request do
   describe 'GET /address' do
     before { sign_in(user) }
 
-    it 'returns http success' do
-      get '/services/address', params: { cep: '24210470' }
+    it 'returns address from cep' do
+      VCR.use_cassette('via_cep/success') do
+        get '/services/address', params: { cep: '24210470' }
+      end
 
-      expect(response).to have_http_status(:success)
+      expect(response.parsed_body).to eq(
+        {
+          'bairro' => 'Ingá',
+          'localidade' => 'Niterói',
+          'logradouro' => 'Rua Presidente Pedreira',
+          'uf' => 'RJ'
+        }
+      )
     end
   end
 end
