@@ -6,7 +6,13 @@ class Contact < ApplicationRecord
   validates :name,
             :cpf,
             :phone,
-            :address,
+            :logradouro,
+            :numero,
+            :localidade,
+            :bairro,
+            :uf,
             :zipcode, presence: true
   validates_with CpfValidator
+
+  store :address, accessors: %i[logradouro numero localidade bairro uf]
 end

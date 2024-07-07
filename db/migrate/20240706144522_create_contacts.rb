@@ -6,7 +6,7 @@ class CreateContacts < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :cpf, index: { unique: true }
       t.string :phone
-      t.string :address
+      t.json :address
       t.string :zipcode
       t.string :geolocation
       t.references :user, null: false, foreign_key: true
