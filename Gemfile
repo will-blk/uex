@@ -51,6 +51,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'vcr'
 end
 
 group :development do
