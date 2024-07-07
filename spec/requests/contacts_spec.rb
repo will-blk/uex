@@ -15,15 +15,11 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe '/contacts', type: :request do
-  # This should return the minimal set of attributes required to create a valid
-  # Contact. As you add validations to Contact, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
-
+  let(:user) { create(:user) }
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      cpf: '12345678901'
+    }
   end
 
   # This should return the minimal set of values that should be in the headers
@@ -34,9 +30,11 @@ RSpec.describe '/contacts', type: :request do
     {}
   end
 
+  before { sign_in(user) }
+
   describe 'GET /index' do
     it 'renders a successful response' do
-      Contact.create! valid_attributes
+      create(:contact, user:)
       get contacts_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
@@ -44,13 +42,29 @@ RSpec.describe '/contacts', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      contact = Contact.create! valid_attributes
+      contact = create(:contact, user:)
       get contact_url(contact), as: :json
       expect(response).to be_successful
     end
   end
 
   describe 'POST /create' do
+    let(:valid_attributes) do
+      {
+        name: Faker::Name.unique.name,
+        cpf: '14791485041',
+        phone: Faker::PhoneNumber.phone_number,
+        address: {
+          logradouro: 'Rua Presidente Pedreira',
+          numero: '33',
+          bairro: 'Ingá',
+          localidade: 'Niterói',
+          uf: 'RJ'
+        },
+        zipcode: Faker::Address.zip_code
+      }
+    end
+
     context 'with valid parameters' do
       it 'creates a new Contact' do
         expect do
@@ -91,7 +105,7 @@ RSpec.describe '/contacts', type: :request do
       end
 
       it 'updates the requested contact' do
-        contact = Contact.create! valid_attributes
+        contact = create(:contact, user:)
         patch contact_url(contact),
               params: { contact: new_attributes }, headers: valid_headers, as: :json
         contact.reload
@@ -99,7 +113,7 @@ RSpec.describe '/contacts', type: :request do
       end
 
       it 'renders a JSON response with the contact' do
-        contact = Contact.create! valid_attributes
+        contact = create(:contact, user:)
         patch contact_url(contact),
               params: { contact: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
@@ -109,7 +123,7 @@ RSpec.describe '/contacts', type: :request do
 
     context 'with invalid parameters' do
       it 'renders a JSON response with errors for the contact' do
-        contact = Contact.create! valid_attributes
+        contact = create(:contact, user:)
         patch contact_url(contact),
               params: { contact: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
@@ -120,7 +134,7 @@ RSpec.describe '/contacts', type: :request do
 
   describe 'DELETE /destroy' do
     it 'destroys the requested contact' do
-      contact = Contact.create! valid_attributes
+      contact = create(:contact, user:)
       expect do
         delete contact_url(contact), headers: valid_headers, as: :json
       end.to change(Contact, :count).by(-1)

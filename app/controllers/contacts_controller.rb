@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts
   def index
-    @contacts = Contacts::Filter.new(filter_params, pagination_params)
+    @contacts = Contacts::Filter.new(filter_params, pagination_params).execute
 
     @contacts = @contacts.where(user: current_user)
 
@@ -60,6 +60,14 @@ class ContactsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def contact_params
-    params.fetch(:contact, {})
+    params.require(:contact).permit(
+      [
+        :name,
+        :cpf,
+        :zipcode,
+        :phone,
+        { address: %i[logradouro numero complemento bairro localidade uf] }
+      ]
+    )
   end
 end

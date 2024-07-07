@@ -38,7 +38,9 @@ module Contacts
     end
 
     def sort_by
-      if pagination_params['sort_by'].keys.any? { |attr| Contact.attribute_names.execlude?(attr) }
+      if !pagination_params['sort_by'] || pagination_params['sort_by'].keys.any? do |attr|
+           Contact.attribute_names.execlude?(attr)
+         end
         return { name: :desc }
       end
 
