@@ -79,6 +79,13 @@ RSpec.describe '/contacts', type: :request do
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
+
+      it 'enqueue a geolocation job' do
+        expect do
+          post contacts_url,
+               params: { contact: valid_attributes }, headers: valid_headers, as: :json
+        end.to enqueue_sidekiq_job(UpdateGeolocationJob)
+      end
     end
 
     context 'with invalid parameters' do

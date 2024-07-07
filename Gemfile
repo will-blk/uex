@@ -59,6 +59,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'

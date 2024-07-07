@@ -23,6 +23,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params.merge(user: current_user))
 
     if @contact.save
+      UpdateGeolocationJob.perform_async(@contact.id)
       render json: @contact, status: :created, location: @contact
     else
       render json: @contact.errors, status: :unprocessable_entity
