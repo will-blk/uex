@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   resources :contacts
   resources :users, only: :destroy
+
+  get 'services/address'
 end
