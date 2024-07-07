@@ -6,7 +6,9 @@ class ContactsController < ApplicationController
 
   # GET /contacts
   def index
-    @contacts = Contact.where(user: current_user)
+    @contacts = Contacts::Filter.new(filter_params, pagination_params)
+
+    @contacts = @contacts.where(user: current_user)
 
     render json: @contacts
   end
@@ -42,6 +44,14 @@ class ContactsController < ApplicationController
   end
 
   private
+
+  def filter_params
+    params.permit(:cpf, :name)
+  end
+
+  def pagination_params
+    params.permit(:sort_by, :per_page, :page)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_contact
