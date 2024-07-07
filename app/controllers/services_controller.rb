@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
   before_action :authenticate_user!, only: :address
 
   def address
-    address = Cep::Consult.new(address).execute
+    address = Cep::Consult.new(params[:cep]).execute
 
     render json: address
   end
