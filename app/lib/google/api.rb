@@ -6,7 +6,7 @@ module Google
     base_uri 'https://maps.googleapis.com'
 
     def geocoding(address_components)
-      address = address_components.slice(%w[logradouro numero bairro localidade uf])
+      address = address_components.slice(*%w[logradouro numero bairro localidade uf])
 
       self.class.get('/maps/api/geocode/json', query: { address: address.values.join(', '), key: })
     end

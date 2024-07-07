@@ -9,7 +9,7 @@ module Google
     def execute
       result = api.geocoding(address)
 
-      result.parsed_response.parsed_response.dig('results', 0, 'geometry', 'location')
+      result.parsed_response.dig('results', 0, 'geometry', 'location')
     end
 
     private
