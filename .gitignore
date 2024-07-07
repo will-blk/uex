@@ -34,3 +34,6 @@
 
 # Byebug
 .byebug_history
+
+# Ignore simplecov report
+/coverage
