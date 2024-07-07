@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :contact do
+    user
     name { Faker::Name.unique.name }
     cpf { '14791485041' }
     phone { Faker::PhoneNumber.phone_number }

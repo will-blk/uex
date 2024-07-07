@@ -9,7 +9,7 @@ class CreateContacts < ActiveRecord::Migration[7.1]
       t.string :address
       t.string :zipcode
       t.string :geolocation
-      t.references :users, :user, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
