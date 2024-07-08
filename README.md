@@ -1,24 +1,23 @@
-# README
+# Requirements
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby 3.2.2
+* Docker
+* Docker-Compose
 
-Things you may want to cover:
+# Boot up
 
-* Ruby version
+Start the project by running:
+```
+docker compose up -d --build
+docker compose run -it app bin/rails db:create db:migrate db:seed
+```
+It will build the app image and setup a postgres instance for it
 
-* System dependencies
+or
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+cp .env.example .env
+(fill in the DB variables for your setup on .env)
+bundle exec rails db:create db:migrate db:seed
+bundle exec rails s
+```
