@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "96f95e69-a6a3-45ce-a7d3-4cd4690c996a",
+		"name": "uex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36796898"
+	},
+	"item": [
+		{
+			"name": "Registrations",
+			"item": [
+				{
+					"name": "Create Resource",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"user1@example.com\",\n        \"password\": \"samurai\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/{{resource_plural}}",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{resource_plural}}"
+							]
+						},
+						"description": "POST   /users(.:format)\tdevise/registrations#create"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sessions",
+			"item": [
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"user@example.com\",\n        \"password\": \"samurai\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/{{resource_plural}}/sign_in",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{resource_plural}}",
+								"sign_in"
+							]
+						},
+						"description": "user_session POST   /users/sign_in(.:format) devise/sessions#create"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign Out",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/{{resource_plural}}/sign_out",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{resource_plural}}",
+								"sign_out"
+							]
+						},
+						"description": "user_session POST   /users/sign_in(.:format) devise/sessions#create"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/contacts",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact\": {\n        \"name\": \"Other Samurai\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/contacts",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Password (recoverable)",
+			"item": [
+				{
+					"name": "Password Reset Request (post)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"name": "Content-Type",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"user@example.com\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/{{resource_plural}}/password",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{resource_plural}}",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Reset Confirm (patch)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"reset_password_token\": \"-96mB4zMSjL4t5N6ozGC\",\n        \"password\": \"newpassword\",\n        \"password_confirmation\": \"newpassword\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/{{resource_plural}}/password",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{resource_plural}}",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "ViaCep",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}:{{port}}/services/address?cep=76807570",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"services",
+								"address"
+							],
+							"query": [
+								{
+									"key": "cep",
+									"value": "76807570"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "content_type",
+			"value": "application/json"
+		},
+		{
+			"key": "resource_plural",
+			"value": "users"
+		}
+	]
+}
